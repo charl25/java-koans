@@ -40,7 +40,14 @@ public class AboutMocks {
         // HINT: pass a safe Collaborator implementation to constructor
         // new ClassUnderTest(new Collaborator(){... it should not be the
         // objective of this test to test that collaborator, so replace it
-        new ClassUnderTest().doSomething();
+        Collaborator notExplosiveCollaborator = new NotExplosiveCollaborator(); // creates an instance of the passing class
+        new ClassUnderTest(notExplosiveCollaborator).doSomething();   //Tests the instance and returns true
+    }
+
+
+    static class NotExplosiveCollaborator implements Collaborator { // create a passing class
+        public void doBusinessStuff() {
+        } // the code only runs the doBusinessStuff method without  doing its own actions
     }
 
 }
